@@ -44,9 +44,11 @@ class CreateUserActivity : AppCompatActivity()
                         {
                             AuthService.createUser(this, email, username, userAvatar, avatarColor)
                             { createSuccess ->
-                                Log.e("HEHEHEHE", "createSuccess is ${createSuccess}")
+                                Log.e("MYTAG", "createSuccess is ${createSuccess}")
                                 if (createSuccess)
                                 {
+                                    //update data
+
                                     //WILL NOW USE LOCAL BROADCAST MANAGER
                                     val userDataChange= Intent(BROADCAST_USER_DATA_CHANGE)
                                     LocalBroadcastManager.getInstance(this).sendBroadcast(userDataChange)
@@ -64,9 +66,9 @@ class CreateUserActivity : AppCompatActivity()
                             errorToast()
                         }
                     }
-                    Log.i("USERCLICKED", "___________________")
-                    Log.i("USERCLICKED", "registerUser")
-                    Log.i("USERCLICKED", "___________________")
+
+                    Log.i("MYTAG", "registerUser")
+
                 }
                 else
                 {

@@ -38,7 +38,7 @@ object AuthService
             complete(true)
         },
                 Response.ErrorListener { error ->
-            Log.i("ERROR", "Could not register user: $error")
+            Log.i("MYTAG", "Could not register user: $error")
             complete(false)
         })
         {
@@ -52,7 +52,7 @@ object AuthService
                 return requestBody.toByteArray()
             }
         }
-        Log.i("REGISTERUSER",registerRequest.url)
+        Log.i("MYTAG",registerRequest.url)
         Volley.newRequestQueue(context).add(registerRequest)
     }
 
@@ -65,7 +65,6 @@ object AuthService
 
         val loginRequest=object:JsonObjectRequest(Method.POST, URL_LOGIN,null,Response.Listener {response->
             //this is where we parse json object
-            println("_______XXXXX__________")
             println(response)
 
             try
@@ -76,20 +75,19 @@ object AuthService
                 complete(true)
             }
             catch(ex:JSONException)
-            {   Log.d("TAG","_______X_____X_____X________")
-                Log.d("JSON","EXC "+ex.localizedMessage)
+            {
+                Log.i("MYTAG","EXC "+ex.localizedMessage)
                 complete(false)
             }
 
 
-            println("_______XXXXX__________")
 
         },Response.ErrorListener {
             //this is where he deal with error
             error ->
-            Log.i("ERRORLOGINREQUEST","___________________")
-            Log.i("ERROR", "Could not login user: $error")
-            Log.i("ERRORLOGINREQUEST","___________________")
+
+            Log.i("MYTAG", "Could not login user: $error")
+
             complete(false)
         })
         {
@@ -137,12 +135,12 @@ object AuthService
                     }
                     catch(ex:JSONException)
                     {
-                        Log.d("JSON","EXCC"+ex.localizedMessage)
+                        Log.d("MYTAG","EXCC"+ex.localizedMessage)
                         complete(false)
                     }
 
                 }, Response.ErrorListener {error->
-                    Log.d("ERROR","COULD NOT ADD USER")
+                    Log.d("MYTAG","COULD NOT ADD USER")
                     complete(false)
 
                 }
